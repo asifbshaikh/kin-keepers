@@ -1,0 +1,12 @@
+.field-with-inline-validation .input-group-addon i {
+  font-size: 16px;
+}
+
+.field-with-inline-validation .input-group-addon i.fa-check-circle {
+  color: green;
+}
+
+.field-with-inline-validation .input-group-addon i.fa-times-circle {
+  color: red;
+}
+

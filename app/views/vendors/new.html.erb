@@ -1,0 +1,288 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/angular-wizard@latest/dist/angular-wizard.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/angular-wizard@latest/dist/angular-wizard.min.js"></script>
+
+<%= javascript_include_tag 'countriesList' %>
+<%= javascript_include_tag 'vendorFormApp' %>
+
+<style>
+
+  # .steps-indicator {
+#   right: 0;
+#   bottom: 0;
+#   left: 0;
+#   margin: 0;
+#   padding: 20px 0px 30px 0px;
+#   height: 30px;
+#   list-style: none;
+# }
+# #wizard1 > ul > li{
+#   padding-top: 20px !important;
+# }
+
+.steps-indicator.steps-3 li {
+    width: calc(100% / 3);
+    height: 30px !important;
+    padding: 10px;
+    background: #1c5c92;
+    a {
+      color: white;
+    }
+}
+
+.steps-indicator.steps-3 li.current, .steps-indicator.steps-3 li.editing {
+    width: calc(100% / 3);
+    height: 30px !important;
+    padding: 10px;  
+    background: #1f4466;
+}
+.steps-indicator a {
+  color: white !important;
+}
+
+ul.steps-3 li:before,ul.steps-3 li:after {
+  left: 100%;
+  top: 27%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+ul.steps-3 li:before {
+  border-width: 15px;
+  margin-top: -8px;
+  z-index: 9;
+}
+
+ul.steps-3 li:after {
+  border-left-color: rgb(27, 92, 146);
+  border-width: 15px;
+  margin-top: -8px;
+  z-index: 8;
+}
+
+.steps-indicator {
+  padding-top: 0px;
+}
+
+ul.steps-3:before, .steps-indicator li.current a:before, .steps-indicator.steps-3 li.editing a:before, .steps-indicator li a:before{
+  display: none;
+}
+
+
+ul.steps-3 li.current:after, ul.steps-3 li.editing:after {
+    border-left-color: rgb(31, 68, 102);
+    border-width: 15px;
+    margin-top: -8px;
+    z-index: 8;
+}
+
+ul.steps-3 li:last-child.current:after, ul.steps-3 li:last-child.editing:after {
+    border-left-color: transparent;
+    border-width: 15px;
+    margin-top: -8px;
+    z-index: 8;
+}
+
+ul.steps-3 li:last-child:after {
+    border-left-color: transparent;
+    border-width: 15px;
+    margin-top: -8px;
+    z-index: 8;
+}
+
+.required-field::after {
+    content: "*";
+    color: red;
+}
+
+</style>
+
+<div class="row" ng-app="myApp" ng-controller="vendorFormController as formCtrl">
+  <div class="col-md-8 col-md-offset-2">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Vendor Registration Form</h3>
+      </div>
+
+      <div class="panel-body">
+
+        <wizard on-finish="finishedWizard()" id="wizard1" indicators-position="top" on-cancel="cancelledWizard()">
+          <div class="form-group">
+            <form name="registration">
+
+              <div style="float:right;" class="panel-body">
+                Fields marked with (*) are required
+              </div>
+
+              <wz-step wz-title="Personal Information" canexit="validateStep1">
+                <div id="businessInfo" class="form-row panel-body ng-scope">
+
+                  <%# Vendor Name %>
+                  <div class="form-group" ng-class="{ 'has-error' : validationState.name.valid != null && !validationState.name.valid,
+                   'has-success' : validationState.name.valid != null && validationState.name.valid }">
+                    <input type="text" class="form-control" ng-model="form.name" ng-blur="isUniqueName()" ng-change="isValidName()"
+                      placeholder="Name*">
+                    <div ng-show="validationState.name.valid == false" data-field="name" class="help-block">{{validationState.name.message}}</div>
+                  </div>
+
+                  <%# Vendor Email %>
+                  <div class="form-group" ng-class="{ 'has-error' : validationState.email.valid != null && !validationState.email.valid,
+                   'has-success' : validationState.email.valid != null && validationState.email.valid }">
+                    <input class="form-control" type="text" ng-model="form.email" ng-blur="isDuplicateEmail()"
+                      ng-change="isValidEmail()" placeholder="Email*">
+                    <div ng-show="validationState.email.valid == false" data-field="email" class="help-block">{{validationState.email.message}}</div>
+                  </div>
+
+                  <%# Vendor Phone Number %>
+                  <div class="form-group" ng-class="{ 'has-error' : validationState.phone.valid != null && !validationState.phone.valid,
+                   'has-success' : validationState.phone.valid != null && validationState.phone.valid }">
+                    <input class="form-control" type="number" ng-model="form.phone" placeholder="Phone*" ng-change="isValidPhone()">
+                    <div ng-show="validationState.phone.valid == false" data-field="email" class="help-block">{{validationState.phone.message}}</div>
+                  </div>
+
+                  <%# Vendor Password %>
+                  <div class="form-group" ng-class="{ 'has-error' : validationState.password.valid != null && !validationState.password.valid,
+                   'has-success' : validationState.password.valid != null && validationState.password.valid }">
+                    <input class="form-control" type="password" ng-model="form.password" placeholder="Password"
+                      ng-change="isValidPassword()">
+                    <div ng-show="validationState.password.valid == false" data-field="email" class="help-block">{{validationState.password.message}}</div>
+                  </div>
+
+                  <%# Vendor Confirm Password %>
+                  <div class="form-group" ng-class="{ 'has-error' : validationState.confirmPassword.valid != null && !validationState.confirmPassword.valid,
+                   'has-success' : validationState.confirmPassword.valid != null && validationState.confirmPassword.valid }">
+                    <input class="form-control" type="password" ng-model="form.confirm_password" ng-change="isValidConfirmPassword()"
+                      placeholder="Re-enter Password">
+                    <div ng-show="validationState.confirmPassword.valid == false" data-field="email" class="help-block">{{validationState.confirmPassword.message}}</div>
+                  </div>
+
+                  <%# Next Button %>
+                  <div class="row">
+                    <div class="form-group col-md-3 col-md-offset-9">
+                      <input type="button" class="btn btn-success" style="width: 100%" value="Next" wz-next>
+                    </div>
+                  </div>
+
+                </div>
+              </wz-step>
+
+              <wz-step wz-title="Business Information" canexit="validateStep2">
+                <div id="businessInfo" class="form-row panel-body ng-scope">
+
+                  <%# Business Name %>
+                  <div class="form-group" ng-class="{ 'has-error' : validationState.businessName.valid != null && !validationState.businessName.valid,
+                   'has-success' : validationState.businessName.valid != null && validationState.businessName.valid }">
+                    <input class="form-control" type="text" ng-model="form.business_name" placeholder="Business Name*"
+                      ng-change="isValidBusinessName()">
+                    <div ng-show="validationState.businessName.valid == false" data-field="email" class="help-block">{{validationState.businessName.message}}</div>
+                  </div>
+
+                  <%# Business Address %>
+                  <div class="form-group" ng-class="{ 'has-error' : validationState.businessAddress.valid != null && !validationState.businessAddress.valid,
+                   'has-success' : validationState.businessAddress.valid != null && validationState.businessAddress.valid }">
+                    <input class="form-control" type="text" ng-model="form.address" placeholder="Business Address*"
+                      ng-change="isValidBusinessAddress()">
+                    <div ng-show="validationState.businessAddress.valid == false" data-field="email" class="help-block">{{validationState.businessAddress.message}}</div>
+                  </div>
+
+                  <%# Years of Incorporation %>
+                  <div class="form-group">
+                    <input class="form-control" type="date" ng-model="form.year_of_incorporation" placeholder="Year Of Incorporation">
+                  </div>
+
+                  <%# Recent Sales Volume%>
+                  <div class="form-group">
+                    <input class="form-control" type="number" ng-model="form.recent_sales_volume" placeholder="Recent Sales Volume">
+                  </div>
+
+                  <%# Product Reference %>
+                  <div class="form-group">
+                    <input class="form-control" type="text" ng-model="form.product_or_service_reference" placeholder="Product Reference Url">
+                  </div>
+
+                  <%# Licence File %>
+                  <div class="form-group" ng-class="{ 'has-error' : validationState.licenceFile.valid != null && !validationState.licenceFile.valid,
+                   'has-success' : validationState.licenceFile.valid != null && validationState.licenceFile.valid }">
+                    <input class="form-control" type="file" id="licenceFile" ng-model="form.copy_of_bussines_licence"
+                      ng-change="isValidLicenceFile()">
+                    <div ng-show="validationState.licenceFile.valid == false" data-field="email" class="help-block">{{validationState.licenceFile.message}}</div>
+                  </div>
+
+                  <%# Back Next Buttons %>
+                  <div class="row">
+                    <div class="form-group col-md-3 col-md-offset-6">
+                      <input type="button" class="btn btn-success" style="width: 100%" value="Back" wz-previous />
+                    </div>
+                    <div class="form-group col-md-3">
+                      <input type="button" class="btn btn-success" style="width: 100%" value="Next" wz-next>
+                    </div>
+                  </div>
+
+                </div>
+              </wz-step>
+
+              <wz-step wz-title="Billing Information" canexit="validateStep3">
+                <div id="billingInfo" class="form-row panel-body ng-scope">
+
+                  <%# Card Number %>
+                  <div class="form-group">
+                    <input class="form-control" type="text" ng-model="form.card_number" placeholder="xxxx-xxxx-xxxx-xxxx"
+                      maxlength="16">
+                  </div>
+
+                  <%# Card Holder Name %>
+                  <div class="form-group">
+                    <input class="form-control" type="text" ng-model="form.card_holder_name" placeholder="Card Holder's Name">
+                  </div>
+
+                  <%# Account Holder Name %>
+                  <div class="form-group">
+                    <input class="form-control" type="text" ng-model="form.account_holder_name" placeholder="Account Holder's Name">
+                  </div>
+
+                  <%# Country %>
+                  <div class="form-group">
+                    <select ng-model="country" class="form-control">
+                      <option value="">-- Select a Country --</option>
+                      <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
+                    </select>
+                  </div>
+
+                  <%# Bank Account Name %>
+                  <div class="form-group">
+                    <input class="form-control" type="text" ng-model="form.bank_account_number" placeholder="Bank Account Number">
+                  </div>
+
+                  <%# Confirm Bank Account Name %>
+                  <div class="form-group" ng-class="{ 'has-error' : validationState.confirmBankAccount.valid != null && !validationState.confirmBankAccount.valid,
+                   'has-success' : validationState.confirmBankAccount.valid != null && validationState.confirmBankAccount.valid }">
+                    <input class="form-control" type="text" ng-model="form.confirm_bank_account_no" placeholder="Re-enter Bank Account Number" ng-change="isValidConfirmBank()">
+                    <div ng-show="validationState.confirmBankAccount.valid == false" data-field="email" class="help-block">{{validationState.confirmBankAccount.message}}</div>
+                  </div>
+
+                  <%# Back Next Buttons %>
+                  <div class="row">
+                    <div class="form-group col-md-3 col-md-offset-6">
+                      <input type="button" class="btn btn-success" style="width: 100%" value="Back" wz-previous />
+                    </div>
+                    <div class="form-group col-md-3">
+                      <input type="submit" class="btn btn-success" style="width: 100%" value="Register"
+                        wz-next>
+                    </div>
+                  </div>
+
+                </div>
+              </wz-step>
+            </form>
+          </div>
+        </wizard>
+      </div>
+    </div>
+  </div>
+</div>

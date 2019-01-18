@@ -1,0 +1,69 @@
+/*
+Error: File to import not found or unreadable: ~@nebular/theme/styles/theming.
+        on line 2 of ../../../@theme/styles/themes.scss
+        from line 1 of echarts.component.scss
+
+1: @import '../../../@theme/styles/themes';
+2: 
+3: @include nb-install-component() {
+4:   ngx-echarts-pie,
+5:   ngx-echarts-bar,
+6:   ngx-echarts-line,
+7:   ngx-echarts-multiple-xaxis,
+
+Backtrace:
+../../../@theme/styles/themes.scss:2
+echarts.component.scss:1
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/import_node.rb:44:in `import'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/import_node.rb:28:in `imported_file'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/import_node.rb:37:in `css_import?'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:310:in `visit_import'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/stack.rb:79:in `block in with_base'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/stack.rb:135:in `with_frame'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/stack.rb:79:in `with_base'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:325:in `block (2 levels) in visit_import'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:325:in `map'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:325:in `block in visit_import'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/stack.rb:88:in `block in with_import'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/stack.rb:135:in `with_frame'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/stack.rb:88:in `with_import'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/stack.rb:79:in `block in with_base'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/stack.rb:135:in `with_frame'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/stack.rb:79:in `with_base'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:52:in `map'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/visitors/perform.rb:10:in `visit'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/root_node.rb:36:in `css_tree'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/exec/sass_scss.rb:387:in `run'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/exec/base.rb:50:in `parse'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/lib/sass/exec/base.rb:18:in `parse!'
+/home/techbulls/.rvm/gems/ruby-2.5.3/gems/sass-3.7.2/bin/sass:13:in `<top (required)>'
+/home/techbulls/.rvm/gems/ruby-2.5.3/bin/sass:23:in `load'
+/home/techbulls/.rvm/gems/ruby-2.5.3/bin/sass:23:in `<main>'
+/home/techbulls/.rvm/gems/ruby-2.5.3/bin/ruby_executable_hooks:24:in `eval'
+/home/techbulls/.rvm/gems/ruby-2.5.3/bin/ruby_executable_hooks:24:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: File to import not found or unreadable: ~@nebular/theme/styles/theming.\A         on line 2 of ../../../@theme/styles/themes.scss\A         from line 1 of echarts.component.scss\A \A 1: @import '../../../@theme/styles/themes';\A 2: \A 3: @include nb-install-component() {\A 4:   ngx-echarts-pie,\A 5:   ngx-echarts-bar,\A 6:   ngx-echarts-line,\A 7:   ngx-echarts-multiple-xaxis,"; }

@@ -1,0 +1,12 @@
+ <% if current_spree_user.respond_to?(:has_spree_role?) && current_spree_user.has_spree_role?(:admin) %>
+  <li class="nav nav-sidebar">
+   <li><%= link_to Spree.t(:admin_panel), "/admin/vendor_dashboard" , style: "font-weight:bold;"%></li>
+  </li>
+<% end %>
+<% if spree_current_user %>
+  <li><%= link_to Spree.t(:my_account), spree.account_path %></li>
+  <li><%= link_to Spree.t(:logout), spree.logout_path %></li>
+<% else %>
+  <li id="link-to-vendor-registration"><%= link_to I18n.t(:vendor_registration), main_app.new_vendor_path %></li>
+  <li id="link-to-login"><%= link_to Spree.t(:login), spree.login_path %></li>
+<% end %>
